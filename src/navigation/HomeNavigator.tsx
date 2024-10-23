@@ -6,11 +6,12 @@ import TelaPrincipal from '../layouts/TelaPrincipal';
 import TelaCadastrar from '../layouts/TelaCadastrar';
 import TelaCoisas from '../layouts/TelaCoisas';
 import TelaCoisa from '../layouts/TelaCoisa';
-import TelaLogin from'../layouts/Telalogin';
-import TelaPacientes from'../layouts/TelaPacientes';
+import TelaLogin from '../layouts/Telalogin';
+import TelaPacientes from '../layouts/TelaPacientes';
 import TelaEsqueceuS from '../layouts/TelaEsqueceuS';
 import TelaCadProdutos from '../layouts/TelaCadProdutos';
 import TelaConsProdutos from '../layouts/TelaConsProdutos';
+import TelaAltProduto from '../layouts/TelaAltProduto';
 
 //Define quais as telas e os parâmetros de cada tela
 type RootStackParamList = {
@@ -18,10 +19,11 @@ type RootStackParamList = {
   TelaLogin: undefined; //Não possui parâmetros
   TelaEsqueceuS: undefined; //Não possui parâmetros
   TelaCadastrar: undefined; //Não possui parâmetros
-  TelaCoisas:undefined; //Não possui parâmetros
-  TelaCadProdutos:undefined; //Não possui parâmetros
-  TelaPacientes:undefined; //Não possui parâmetros
-  TelaConsProdutos:undefined; //Não possui parâmetros
+  TelaCoisas: undefined; //Não possui parâmetros
+  TelaCadProdutos: undefined; //Não possui parâmetros
+  TelaPacientes: undefined; //Não possui parâmetros
+  TelaConsProdutos: undefined; //Não possui parâmetros
+  TelaAltProduto: {id: string}; //Não possui parâmetros
   TelaCoisa: {valor: number}; //Não possui parâmetros
 };
 
@@ -40,14 +42,14 @@ const HomeNavigator = () => {
 
       <Stack.Screen name="TelaLogin" component={TelaLogin} />
 
-      
-
       <Stack.Screen name="TelaCadProdutos" component={TelaCadProdutos} />
+
+      <Stack.Screen name="TelaAltProduto" component={TelaAltProduto} />
 
       <Stack.Screen name="TelaConsProdutos" component={TelaConsProdutos} />
 
       <Stack.Screen name="TelaPacientes" component={TelaPacientes} />
-      
+
       <Stack.Screen name="TelaPrincipal" component={TelaPrincipal} />
 
       <Stack.Screen name="TelaCadastrar" component={TelaCadastrar} />
@@ -55,9 +57,8 @@ const HomeNavigator = () => {
       <Stack.Screen name="TelaEsqueceuS" component={TelaEsqueceuS} />
 
       <Stack.Screen name="TelaCoisas" component={TelaCoisas} />
-      
+
       <Stack.Screen name="TelaCoisa" component={TelaCoisa} />
-      
     </Stack.Navigator>
   );
 };
@@ -69,27 +70,47 @@ type PrincipalProps = NativeStackScreenProps<
   'TelaPrincipal'
 >;
 type LoginProps = NativeStackScreenProps<RootStackParamList, 'TelaLogin'>;
-type EsqueceuProps = NativeStackScreenProps<RootStackParamList, 'TelaEsqueceuS'>;
-type CadProdutosprops = NativeStackScreenProps<RootStackParamList, 'TelaCadProdutos'>;
-type ConsProdutosprops = NativeStackScreenProps<RootStackParamList, 'TelaConsProdutos'>;
-type PacientesProps = NativeStackScreenProps<RootStackParamList, 'TelaPacientes'>;
-
+type EsqueceuProps = NativeStackScreenProps<
+  RootStackParamList,
+  'TelaEsqueceuS'
+>;
+type CadProdutosprops = NativeStackScreenProps<
+  RootStackParamList,
+  'TelaCadProdutos'
+>;
+type ConsProdutosprops = NativeStackScreenProps<
+  RootStackParamList,
+  'TelaConsProdutos'
+>;
+type PacientesProps = NativeStackScreenProps<
+  RootStackParamList,
+  'TelaPacientes'
+>;
+type AltProdutoprops = NativeStackScreenProps<
+  RootStackParamList,
+  'TelaAltProduto'
+>;
 
 type CadastrarProps = NativeStackScreenProps<
   RootStackParamList,
   'TelaCadastrar'
 >;
-type CoisasProps = NativeStackScreenProps<
-  RootStackParamList,
-  'TelaCoisas'
->;
-type CoisaProps = NativeStackScreenProps<
-  RootStackParamList,
-  'TelaCoisa'
->;
+type CoisasProps = NativeStackScreenProps<RootStackParamList, 'TelaCoisas'>;
+type CoisaProps = NativeStackScreenProps<RootStackParamList, 'TelaCoisa'>;
 
 //exporta o navegador da pilha para ficar visível para outros arquivos
 export default HomeNavigator;
 
 //exporta os tipos de dados para ficar visível para outros arquivos
-export type {PrincipalProps, LoginProps, CadastrarProps,CoisasProps,CoisaProps,EsqueceuProps,CadProdutosprops,PacientesProps,ConsProdutosprops};
+export type {
+  PrincipalProps,
+  LoginProps,
+  CadastrarProps,
+  CoisasProps,
+  CoisaProps,
+  EsqueceuProps,
+  CadProdutosprops,
+  PacientesProps,
+  ConsProdutosprops,
+  AltProdutoprops
+};

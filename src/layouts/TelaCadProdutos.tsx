@@ -17,7 +17,7 @@ import firestore from '@react-native-firebase/firestore';
 const TelaCadProdutos = (props: CadProdutosprops) => {
     const [nome,setnome] = useState('');
     const [codigoBarras,setcodigoBarras] = useState('');
-    const [preco,setpreco] = useState(1.00);
+    const [preco,setpreco] = useState('');
   
 
 function verProdutos(){
@@ -29,7 +29,7 @@ function cadastrar(){
     let produto ={
         nome : nome,
         codigoBarras: codigoBarras,
-        preco: preco
+        preco: Number.parseFloat(preco)
     }as Produto;
 
 firestore()
@@ -38,7 +38,7 @@ firestore()
 .then(()=>{Alert.alert("produto","produto cadastrado com sucesso!")
 setnome("")
 setcodigoBarras("")
-setpreco(0)
+setpreco("0")
 
 })
 .catch((error)=>console.log(error));
@@ -65,23 +65,22 @@ function verificaCampos() {
       source={{
         uri: 'https://wallpapers.com/images/hd/purple-galaxy-2880-x-1800-background-srvn2y6n8krndfwp.jpg',
       }}>
-   <ScrollView>
-      <View style={{flex: 1, alignItems: 'flex-start'}}>
-          <Pressable
-                style={{borderBottomStartRadius:1,
-                    borderTopStartRadius:1,
-                borderTopEndRadius:1,
+         <Pressable
+            style={{
+              borderBottomEndRadius: 10,
+              borderBottomStartRadius: 10,
               backgroundColor: '#921fd1',
               padding: 10,
-              borderRadius: 50,
-             
+              
+              
             }}
             onPress={() => {
               props.navigation.goBack();
             }}>
-            <Text style={{fontSize: 30, color: 'white'}}>voltar</Text>
+            <Text style={{fontSize: 30, color: 'white',textAlign:'center'}}>voltar</Text>
           </Pressable>
-        </View>
+   <ScrollView>
+     
         
 <View style={{flex: 1, alignItems: 'center'}}>
       <Text style={styles.titulo1}>cadastrar produto</Text>
@@ -107,7 +106,7 @@ function verificaCampos() {
        <TextInput
        maxLength={7}
        value={preco.toString()}
-       onChangeText={(text)=> setpreco(Number.parseInt(text))}
+       onChangeText={(text)=> setpreco(text)}
                style={[styles.caixa_texto]}
       />
 

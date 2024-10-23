@@ -53,18 +53,21 @@ auth()
       }}>
       <ScrollView>
         
-      <View style={{alignItems: 'flex-start'}}>
+      <View style={{flex: 1, alignItems: 'flex-start'}}>
           <Pressable
-            style={state => [
-              styles.botaoEntrar,
-              {marginTop: 30},
-              state.pressed ? {opacity: 0.5} : null,
-            ]}
-            onPress={
-              voltar
-            }>
-              
-            <Text style={{color: 'white', fontSize: 30}}>voltar</Text>
+                style={{borderBottomStartRadius:1,
+                    borderTopStartRadius:1,
+                borderTopEndRadius:1,
+              backgroundColor: '#921fd1',
+              padding: 10,
+              borderRadius: 50,
+              marginBottom:50
+             
+            }}
+            onPress={() => {
+              props.navigation.goBack();
+            }}>
+            <Text style={{fontSize: 30, color: 'white'}}>voltar</Text>
           </Pressable>
         </View>
         <View style={{flex:1,alignItems:"center"}}>

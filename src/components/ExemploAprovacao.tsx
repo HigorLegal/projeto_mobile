@@ -13,17 +13,20 @@ import {styles} from '../styles/stylesPrincipal';
 
 const ExemploAprovacao = () => {
   
-    const [nome, setnome] = useState('a');
-  const [nota1, setnota1] = useState(0);
-  const [nota2, setnota2] = useState(0);
+    const [nome, setnome] = useState('');
+  const [nota1, setnota1] = useState('');
+  const [nota2, setnota2] = useState('');
   
   
   function verificarAprovacao() {
-    if ((nota1 + nota2) / 2 >= 7.0) {
-      return 'parabens o aluno ' + nome + ' foi aprovado!!';
+    if(nome == '' || nota1 == ''||nota2 ==''){
+      return 'preencha os requisitos';
+  }else{
+    if ((Number.parseInt(nota1) + Number.parseFloat(nota2)) / 2 >= 7.0) {
+      return 'resposta : parabens o aluno ' + nome + ' foi aprovado!!';
     } else {
-      return 'infelizmente o aluno ' + nome + ' foi reprovado, melhore';
-    }
+      return 'resposta : infelizmente o aluno ' + nome + ' foi reprovado, melhore';
+    }}
   }
 
   return (
@@ -45,7 +48,7 @@ const ExemploAprovacao = () => {
  
 <TextInput
 value={nota1.toString()}
-onChangeText={(text)=> setnota1(Number.parseInt(text))}
+onChangeText={(text)=> setnota1(text)}
         style={[styles.caixa_texto]}
 
       />
@@ -54,11 +57,11 @@ onChangeText={(text)=> setnota1(Number.parseInt(text))}
 
       <TextInput
        value={nota2.toString()}
-       onChangeText={(text)=> setnota2(Number.parseInt(text))}
+       onChangeText={(text)=> setnota2(text)}
                style={[styles.caixa_texto]}
       />
 
-      <Text style={styles.titulo1}>resposta:{verificarAprovacao()}</Text>
+      <Text style={styles.titulo1}>{verificarAprovacao()}</Text>
     </>
   );
 };

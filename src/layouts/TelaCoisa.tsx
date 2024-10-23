@@ -45,7 +45,7 @@ const TelaCoisa = (props: CoisaProps) => {
 
         <View>
           {valor == 1 ? (
-            <ExemploCalculo valor1={0} valor2={1} />
+            <ExemploCalculo />
           ) : valor == 2 ? (
             <ExemploAprovacao/>
           ) : valor == 3 ? (

@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 0,
     marginTop: '40.7%',
-    gap: 0,
+    
   },
 
   tela: {
