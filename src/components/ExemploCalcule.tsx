@@ -1,55 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Text, Image, ScrollView, TextInput, Pressable} from 'react-native';
 import { styles } from '../styles/stylesLogin';
 
-type CalculoProps={
-    valor1:number,
-    valor2:number
-    }
     
-    const ExemploCalculo = (props:CalculoProps)=>{
+    
+    const ExemploCalculo = ()=>{
+const [valor1,setvalor1]=useState('')
+const [valor2,setvalor2]=useState('')
 
     function Somar (){
-    return props.valor1+props.valor2;
+        if(valor1 =='' || valor2 == ''){
+            return 0;
+        }
+    return Number.parseInt(valor1)+Number.parseInt(valor2);
     }
 
     function Subtrair (){
-    return props.valor1-props.valor2;
+        if(valor1 =='' || valor2 == ''){
+            return 0;
+        }
+    return Number.parseInt(valor1)-Number.parseInt(valor2);
     }
 
     function Dividir (){
-        if(props.valor2 != 0){
-    return props.valor1/props.valor2;
+        if(valor1 =='' || valor2 == ''){
+            return 0;
+        }
+        if(Number.parseInt(valor2) != 0){
+    return Number.parseInt(valor1)/Number.parseInt(valor2);
         }
         else{
             return 0;
         }
     }
 
-    function Multiplicar (){
-    return props.valor1*props.valor2;
+    function Multiplicar (){ if(valor1 =='' || valor2 == ''){
+        return 0;
+    }
+    return Number.parseInt(valor1)*Number.parseInt(valor2);
 
     }
 
   return (
     <>
-<View style={{backgroundColor:"#ede8ee",borderRadius:30}}>
-    <Text style={{
-        textAlign:"center",
-        fontSize: 50,
-        fontWeight: 'bold',
-        color: '#bc19d9'}}>
-valor 1 = {props.valor1} 
+<View style={{backgroundColor:"#921fd1",borderRadius:10,padding:10}}>
+<Text style={styles.titulo1}>primeira nota  </Text>
+<TextInput
+value={valor1.toString()}
+onChangeText={(text)=> setvalor1(text)}
+        style={[styles.caixa_texto]}
 
-    </Text>
-    <Text style={{
-        textAlign:"center",
-        fontSize: 50,
-        fontWeight: 'bold',
-        color: '#bc19d9'}}>
-valor 2 = {props.valor2} 
+      />
 
-    </Text>
+       
+       <Text style={styles.titulo1}>segunda nota  </Text>
+
+      <TextInput
+       value={valor2.toString()}
+       onChangeText={(text)=> setvalor2(text)}
+               style={[styles.caixa_texto]}
+      />
+
+    
     </View>
 
     <View style={{alignItems:"center"}}>
@@ -83,7 +95,8 @@ Dividir:{Dividir()}
         marginBottom:50,
         fontSize: 50,
         fontWeight: 'bold',
-        color: 'white'}}>
+        color: 'white'}}
+        >
 Multiplicar:{Multiplicar()}
     </Text>
     </View>

@@ -19,8 +19,8 @@ const TelaPacientes = (props: PacientesProps) => {
   const [lista, setLista] = useState([] as paciente[]);
   const [nome, setNome] = useState('');
   const [problema, setProblema] = useState('');
-  const [idade, setIdade] = useState(0);
-  const [risco, setRisco] = useState(1);
+  const [idade, setIdade] = useState('');
+  const [risco, setRisco] = useState('1');
 
  
 
@@ -30,8 +30,8 @@ const TelaPacientes = (props: PacientesProps) => {
     let novoPaciente = {
     nome: nome,
     problema: problema,
-    idade: idade,
-    risco: risco,
+    idade: Number.parseFloat(idade),
+    risco: Number.parseFloat(risco),
   } as paciente;
 
     
@@ -42,8 +42,8 @@ const TelaPacientes = (props: PacientesProps) => {
  
     setNome('')
      setProblema('')
-     setIdade(0)
-     setRisco(1)
+     setIdade("0")
+     setRisco("1")
 }
   
 
@@ -67,16 +67,16 @@ const TelaPacientes = (props: PacientesProps) => {
       Alert.alert('Campo em branco', 'Preencha o campo "Risco".')
       return false
     }
-    let idadeNumero = idade;
+    let idadeNumero = Number.parseFloat(idade);
     if (!idadeNumero || idadeNumero > 130 || idadeNumero < 0) {
       Alert.alert('Preenchimento incorreto', 'O campo "Idade" deve conter um valor numérico.')
-      setIdade(0)
+      setIdade("0")
       return false
     }
-    let riscoNumero = risco;
+    let riscoNumero = Number.parseFloat(risco);
     if (!riscoNumero || riscoNumero > 5 || riscoNumero < 1) {
       Alert.alert('Preenchimento incorreto', 'O campo "Risco" deve conter um valor numérico entre 1 e 5.')
-      setRisco(1)
+      setRisco("1")
       return false
     }
     return true
@@ -85,27 +85,25 @@ const TelaPacientes = (props: PacientesProps) => {
     <ImageBackground
       style={{flex: 1}}
       source={{
-        //https://services.meteored.com/img/article/universo-pode-estar-desacelerando-segundo-novas-observacoes-de-galaxias-1712261219743_1280.png
+        
         uri: 'https://wallpapers.com/images/hd/purple-galaxy-2880-x-1800-background-srvn2y6n8krndfwp.jpg',
       }}>
-      
-        <ScrollView>
-      <View style={{flex: 1, alignItems: 'flex-start'}}>
-          <Pressable
-                style={{borderBottomStartRadius:1,
-                    borderTopStartRadius:1,
-                borderTopEndRadius:1,
+       <Pressable
+            style={{
+              borderBottomEndRadius: 10,
+              borderBottomStartRadius: 10,
               backgroundColor: '#921fd1',
               padding: 10,
-              borderRadius: 50,
-             
+              
+              
             }}
             onPress={() => {
               props.navigation.goBack();
             }}>
-            <Text style={{fontSize: 30, color: 'white'}}>voltar</Text>
+            <Text style={{fontSize: 30, color: 'white',textAlign:'center'}}>voltar</Text>
           </Pressable>
-        </View>
+        <ScrollView>
+      
         <View style={{flex: 1, alignItems: 'center'}}>
         
 
@@ -143,7 +141,7 @@ const TelaPacientes = (props: PacientesProps) => {
           </Text>
           <TextInput
             value={idade.toString()}
-            onChangeText={text => setIdade(Number.parseInt(text))}
+            onChangeText={text => setIdade(text)}
             style={{
               backgroundColor: 'white',
               color: 'black',
@@ -168,7 +166,7 @@ const TelaPacientes = (props: PacientesProps) => {
           </Text>
           <TextInput
             value={risco.toString()}
-            onChangeText={text => setRisco(Number.parseInt(text))}
+            onChangeText={text => setRisco(text)}
             style={{
               backgroundColor: 'white',
               color: 'black',
